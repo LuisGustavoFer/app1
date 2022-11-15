@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Carros</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body>
+    <h1 class="text-center">Tabela de Carros</h1>
+
+    <% if( salvo != undefined){ %>
+        <div style="background-color: aqua; color:red">
+          Carro cadastrada com sucesso!
+        </div>
+        <% } %>  
+     
+        <% if( deletar != undefined){ %>
+        <div style="background-color: azure; color:red">
+          Carro removida com sucesso
+        </div>
+        <% } %>  
+        
+        <% if( atualizar != undefined){ %>
+        <div style="background-color: azure; color:rgb(53, 8, 200)">
+          Carro Atualizado com sucesso
+        </div>
+        <% } %>  
+
+    <table style="border: 1px solid; text-align: center; width: 100%;" class="table table-dark" border="4">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Placa</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Cor</th>
+                <th scope="col">Detalhes</th>
+                <th scope="col">Atualizar</th>
+                <th scope="col">Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let carro of carros){ %>
+                <tr>
+                    <td scope="row">
+                        <%= carro.placa %>
+                    </td>
+                    <td scope="row">
+                        <%= carro.modelo %>
+                    </td>
+                    <td scope="row">
+                        <%= carro.cor %>
+                    </td>
+                    <td><a href="/carros/<%= carro.placa %>"><button type="button"
+                        class="btn btn-info">Informações</button></a></td>
+                    <td><a class="btn btn-primary" onclick="return confirm('Deseja Atualizar?')" 
+                        href="/veiculos/cadastrar/<%=carro.placa%>">Atualizar</a></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Deseja Deletar?')" 
+                        href="/carros/remover/<%=carro.placa%>">Remover</a></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</body>
+
+<footer>
+    <%- include("../partials/rodape.ejs") %>
+</footer>
+
+</html>

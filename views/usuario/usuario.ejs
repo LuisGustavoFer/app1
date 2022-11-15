@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuário</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body class="text-center">
+    <div>
+        <h1>Detalhar de Usuários</h1>
+    </div>
+
+    <div>
+        <% if (resultado==undefined) { %>
+            <div>Usúario não encontrado</div>
+        <% } else {%>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"> Email: <%= resultado.email %>
+                    </h5>
+                    <p class="card-text">Nome: <%= resultado.nome %><br> </p>
+                </div>
+            </div>
+            <% } %>
+        <a href="/usuarios" class="btn btn-light">Voltar</a>
+    </div>
+</body>
+
+<footer>
+    <%- include("../partials/rodape.ejs") %>
+</footer>
+
+</html>

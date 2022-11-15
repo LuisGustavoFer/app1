@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usúarios</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body>
+    <h1 class="text-center">Tabela de Usúarios</h1>
+    
+    <% if (mensagem != undefined) { 
+        const css = `style=background-color:lightgrey;color:${cor}`; %>
+        <div <%= css %>>
+            <%= mensagem %>
+        </div>
+    <% } %>
+
+    <table style="border: 1px solid; text-align: center; width: 100%;" class="table table-dark" border="4">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Detalhes</th>
+                <th scope="col">Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let usuario of usuarios){ %>
+                <tr>
+                    <td scope="row">
+                        <%= usuario.nome %>
+                    </td>
+                    <td scope="row">
+                        <%= usuario.email %>
+                    </td>
+                    <td><a href="/usuarios/<%= usuario.email  %>"><button type="button"
+                        class="btn btn-info">Informações</button></a></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Deseja Deletar?')" 
+                        href="/usuarios/remover/<%= usuario.email%>">Remover</a></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+    
+</body>
+
+<footer>
+    <%- include("../partials/rodape.ejs") %>
+</footer>
+
+</html>

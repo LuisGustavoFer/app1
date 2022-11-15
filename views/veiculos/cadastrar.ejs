@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Carro</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body class="text-center">
+    <div class="container">
+        <h1>Cadastro de Carro</h1>
+
+        <form action="/carros" method="post">
+            <input type="hidden" name="id" value="<%= carro.id %>">
+
+            <div <%= escondido %> class="mb-4">
+                <label class="form-label">Placa</label>
+                <input type="text" value="<%= carro.placa %>" required class="form-control" placeholder="AAA-0000" pattern="\d{3}\-?\d{4}" name="placa">
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Modelo</label>
+                <input type="text" value="<%= carro.modelo %>" required class="form-control" name="modelo">
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Cor</label>
+                <input type="text" value="<%= carro.cor %>" class="form-control" name="cor">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="/carros"><button type="button" class="btn btn-light">Voltar</button></a>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+<footer>
+    <%- include("../partials/rodape.ejs") %>
+</footer>
+
+</html>

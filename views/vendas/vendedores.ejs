@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Vendedores</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body>
+    <h1 class="text-center">Tabela de Vendedores</h1>
+ 
+    <% if( salvo != undefined){ %>
+        <div style="background-color: aqua; color:red">
+          Vendedor cadastrado com sucesso!
+        </div>
+        <% } %>  
+     
+        <% if( deletar != undefined){ %>
+        <div style="background-color: azure; color:red">
+          Vendedor removido com sucesso
+        </div>
+        <% } %> 
+
+        <% if( atualizar != undefined){ %>
+            <div style="background-color: azure; color:rgb(20, 31, 190)">
+              Vendedor Atualizado com sucesso
+            </div>
+        <% } %> 
+
+    <table style="border: 1px solid; text-align: center; width: 100%;" class="table table-dark" border="4">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">CPF</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Idade</th>
+                <th scope="col">Detalhes</th>
+                <th scope="col">Atualizar</th>
+                <th scope="col">Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let vendedor of vendedores){ %>
+                <tr>
+                    <td scope="row">
+                        <%= vendedor.cpf %>
+                    </td>
+                    <td scope="row">
+                        <%= vendedor.nome %>
+                    </td>
+                    <td scope="row">
+                        <%= vendedor.idade %>
+                    </td>
+                    <td><a href="/vendedores/<%= vendedor.cpf  %>"><button type="button"
+                        class="btn btn-info">Informações</button></a></td>
+                    <td><a class="btn btn-primary" onclick="return confirm('Deseja Atualizar?')" 
+                        href="/vendedores/cadastrar/<%=vendedor.cpf %>">Atualizar</a></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Deseja Deletar?')" 
+                        href="/vendedores/remover/<%= vendedor.cpf %>">Remover</a></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</body>
+
+<footer>
+    <%- include("../partials/rodape.ejs") %>
+</footer>
+
+</html>

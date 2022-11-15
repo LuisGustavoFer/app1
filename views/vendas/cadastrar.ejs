@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Vendedor</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body class="text-center">
+    <div class="container">
+        <h1>Cadastro de Vendedores</h1>
+
+        <form action="/vendedores" method="post">
+            <input type="hidden" name="id" value="<%= vendedor.id %>">
+            
+            <div <%= escondido %> class="mb-4">
+                <label class="form-label">CPF</label>
+                <input type="text" value="<%= vendedor.cpf %>" required class="form-control" placeholder="000.000.000-00" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" name="cpf">
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Nome</label>
+                <input type="text" value="<%= vendedor.nome %>" required class="form-control" name="nome">
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Idade</label>
+                <input type="text" value="<%= vendedor.idade %>" class="form-control" name="idade">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="/vendedores"><button type="button" class="btn btn-light">Voltar</button></a>
+            </div>
+        </form>
+    </div>
+</body>
+
+<footer>
+    <%- include("../partials/rodape.ejs") %>
+</footer>
+
+</html>
